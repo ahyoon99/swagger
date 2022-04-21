@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.service.RequestBody;
 
 @Api(tags = {"API 정보를 제공하는 Controller"})    // 1. @Api
 @RestController
@@ -36,4 +35,8 @@ public class ApiController {
         return new UserRes(userReq.getName(), userReq.getAge());
     }
 
+    @PostMapping("/user")
+    public UserRes userPost(@RequestBody UserReq req){
+        return new UserRes(req.getName(), req.getAge());
+    }
 }
