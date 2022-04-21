@@ -1,6 +1,9 @@
 package com.example.swagger.controller;
 
+import com.example.swagger.dto.UserReq;
+import com.example.swagger.dto.UserRes;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +25,12 @@ public class ApiController {
             @ApiParam(value="y값")
             @RequestParam int y){
         return x+y;
+    }
+
+    @ApiOperation(value = "사용자의 이름과 나이를 리턴하는 메소드")
+    @GetMapping("/user")
+    public UserRes user(UserReq userReq){
+        return new UserRes(userReq.getName(), userReq.getAge());
     }
 
 }
