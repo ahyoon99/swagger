@@ -2,10 +2,7 @@ package com.example.swagger.controller;
 
 import com.example.swagger.dto.UserReq;
 import com.example.swagger.dto.UserRes;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"API 정보를 제공하는 Controller"})    // 1. @Api
@@ -18,12 +15,14 @@ public class ApiController {
         return "hello";
     }
 
+    @ApiImplicitParams({
+                    @ApiImplicitParam(name = "x", value = "x값", required = true, dataType = "int", paramType = "path"),
+                    @ApiImplicitParam(name = "y", value = "y값", required = true, dataType = "int", paramType = "query")
+            })
     @GetMapping("/plus/{x}")
     public int plus(
-            @ApiParam(value="x값")   // 2. @ApiParam
             @PathVariable int x,
 
-            @ApiParam(value="y값")
             @RequestParam int y){
         return x+y;
     }
